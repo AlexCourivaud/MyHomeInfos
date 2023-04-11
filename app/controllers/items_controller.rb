@@ -9,17 +9,19 @@ class ItemsController < ApplicationController
   end
 
   def new
-    @item = Item.new
+    @room = Room.find(params[:room_id])
+    @item = @room.items.build
   end
 
   def edit
   end
 
   def create
-    @item = Item.new(item_params)
+    @room = Room.find(params[:room_id])
+    @item = @room.items.build(item_params)
 
     if @item.save
-      redirect_to @item, notice: 'Item was successfully created.'
+      redirect_to room_path(@item.room), notice: 'Item was successfully created.'
     else
       render :new
     end
@@ -47,6 +49,6 @@ class ItemsController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def item_params
-    params.require(:item).permit(:name, :description, :image_url, :room_id, :painting_id)
+    params.require(:item).permit(:name, :description)
   end
 end

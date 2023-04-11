@@ -1,6 +1,17 @@
-<%= @room.id %>
-<%= @room.name %>
+<h1><%= @room.name %></h1>
+
+<p><%= @room.items.count %> items in this room:</p>
+
+  <% @room.items.each do |item| %>
+    <li><h4><%= item.name %></h4>
+    <p><%= item.description  %></p>
+    </li>
+  <% end %>
 
 
-
+<%= simple_form_for [@room, @item] do |f| %>
+  <%= f.input :name %>
+  <%= f.input :description %>
+  <%= f.button :submit, 'Add Item' %>
+<% end %>
         <%= link_to "return to dashboard", rooms_path, class: 'btn button-essential' %>

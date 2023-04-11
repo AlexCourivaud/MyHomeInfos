@@ -7,6 +7,8 @@ class RoomsController < ApplicationController
   end
 
   def show
+    @room = Room.find(params[:id])
+    @item = Item.new
   end
 
   def new
