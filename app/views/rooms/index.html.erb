@@ -1,0 +1,19 @@
+<h1>Mes pièces</h1>
+
+
+<% @rooms.each do |room| %>
+  <%= link_to room_path(room) do %>
+    <p><%= room.id %> -
+    <%= room.name %> </p>
+  <% end %>
+    <div>
+    <%= link_to "Supprimer", room_path(room), method: :delete, data: {turbo_method: :delete, turbo_confirm: "Êtes-vous sûr de vouloir supprimer cette pièce ?"} %>
+    </div>
+<% end %>
+
+<h2>Add a Room</h2>
+
+<%= simple_form_for @room do |f| %>
+  <%= f.input :name %>
+  <%= f.button :submit %>
+<% end %>
