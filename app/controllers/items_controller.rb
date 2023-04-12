@@ -21,7 +21,7 @@ class ItemsController < ApplicationController
     @item = @room.items.build(item_params)
 
     if @item.save
-      redirect_to room_path(@item.room), notice: 'Item was successfully created.'
+      redirect_to room_path(@item.room), notice: "L'élement #{@item.name} a bien été ajouté à la pièce #{@room.name}."
     else
       render :new
     end
@@ -29,15 +29,16 @@ class ItemsController < ApplicationController
 
   def update
     if @item.update(item_params)
-      redirect_to @item, notice: 'Item was successfully updated.'
+      redirect_to @item, notice: "L'élément #{@item.name} a bien été mis à jour."
     else
       render :edit
     end
   end
 
   def destroy
-    @item.destroy
-    redirect_to items_url, notice: 'Item was successfully destroyed.'
+    @item = Item.find(params[:id])
+    @item.delete
+    redirect_to room_path(@item.room), notice: "L'élément #{@item.name} a bien été supprimé."
   end
 
   private
@@ -51,4 +52,15 @@ class ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(:name, :description)
   end
+
+  def add_param
+    @item = Item.find(params[:id])
+    @item.item_params[params[:new_param_name]] = params[:new_param_value]
+    if @item.save
+      redirect_to item_path(@item), notice: 'New parameter added successfully.'
+    else
+      render :edit
+    end
+  end
+
 end

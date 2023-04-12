@@ -3,9 +3,10 @@
 <p><%= @room.items.count %> items in this room:</p>
 
   <% @room.items.each do |item| %>
-    <li><h4><%= item.name %></h4>
-    <p><%= item.description  %></p>
-    </li>
+    <h4><%= item.name %> - </h4>
+        <p><%= item.id %> -
+    <%= item.description  %></p>
+  <%= link_to "Supprimer", room_item_path(@room, item), method: :delete, data: {turbo_method: :delete, turbo_confirm: "Êtes-vous sûr de vouloir supprimer cet item ?"} %>
   <% end %>
 
 
