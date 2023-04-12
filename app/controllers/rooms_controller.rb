@@ -30,7 +30,7 @@ class RoomsController < ApplicationController
 
   def update
     if @room.update(room_params)
-      redirect_to @room, notice: "La pièce  #{@room.name} a été mise à jour."
+      redirect_to rooms_path, notice: "La pièce #{@room.name} a été mise à jour."
     else
       render :edit
     end
