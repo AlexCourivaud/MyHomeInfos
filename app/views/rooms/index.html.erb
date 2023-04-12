@@ -8,9 +8,10 @@
     <% end %>
       <%= link_to "Supprimer", room_path(room), method: :delete, data: {turbo_method: :delete, turbo_confirm: "Êtes-vous sûr de vouloir supprimer cette pièce ?"} %>
       <%= link_to "Modifier", room_path(room), method: :edit, data: {turbo_method: :edit, turbo_confirm: "Êtes-vous sûr de vouloir modifier cette pièce ?"} %>
+<br><br>
   <% end %>
 </div>
-
+<br><br>
 <h2>Add a Room</h2>
 
 <%= simple_form_for @room do |f| %>

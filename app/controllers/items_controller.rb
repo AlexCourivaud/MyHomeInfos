@@ -23,7 +23,7 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to room_path(@item.room), notice: "L'élement #{@item.name} a bien été ajouté à la pièce #{@room.name}."
     else
-      render :new
+      redirect_to room_path(@item.room), notice: 'Ne peut être vide'
     end
   end
 
