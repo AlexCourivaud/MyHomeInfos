@@ -7,7 +7,10 @@
       <%= room.name %> </p>
     <% end %>
       <%= link_to "Supprimer", room_path(room), method: :delete, data: {turbo_method: :delete, turbo_confirm: "Êtes-vous sûr de vouloir supprimer cette pièce ?"} %>
-      <%= link_to "Modifier", room_path(room), method: :edit, data: {turbo_method: :edit, turbo_confirm: "Êtes-vous sûr de vouloir modifier cette pièce ?"} %>
+    <%= link_to "Modifier", "rooms", class: "edit-room", data: { id: room.id } %>
+      <td><%= link_to "Modifier", edit_room_path(room) %></td>
+
+
 <br><br>
   <% end %>
 </div>
