@@ -4,20 +4,25 @@
   <% @rooms.each do |room| %>
     <%= link_to room_path(room) do %>
       <p><%= room.id %> -
-      <%= room.name %> </p>
+      <%= room.name %> -
+      </p>
     <% end %>
       <%= link_to "Supprimer", room_path(room), method: :delete, data: {turbo_method: :delete, turbo_confirm: "Êtes-vous sûr de vouloir supprimer cette pièce ?"} %>
-    <%= link_to "Modifier", "rooms", class: "edit-room", data: { id: room.id } %>
-      <td><%= link_to "Modifier", edit_room_path(room) %></td>
-
-
-<br><br>
+      <td><%= link_to "//Modifier -ne fonctione pas/", room_path(room) %></td>
+      <br><br>
   <% end %>
+
+
 </div>
 <br><br>
-<h2>Add a Room</h2>
+<h2>Ajouter une nouvelle pièce</h2>
 
 <%= simple_form_for @room do |f| %>
-  <%= f.input :name %>
+  <%= f.input :name, label: "Nom de la pièce" %>
+  <%= f.simple_fields_for :paintings, f.object.paintings.build do |p| %>
+    <%= p.input :color, label: "Couleur" %>
+    <%= p.input :brand, label: "Marque" %>
+    <%= p.input :date_painted, as: :date, label: "Date de peinture" %>
+  <% end %>
   <%= f.button :submit %>
 <% end %>
