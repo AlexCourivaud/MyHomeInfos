@@ -1,0 +1,12 @@
+<h1> Modifier la pièce <%= @room.name %> : </h1>
+
+
+<%= simple_form_for @room do |f| %>
+  <%= f.text_field :name, label: "#{ @room.name }" %>
+  <%= f.button :submit, value: "Modifier le nom" %>
+<% end %>
+
+<h1>Voulez-vous ajouter une peinture ? </h1>
+
+<br><br>
+<%= link_to "return to dashboard", rooms_path, class: 'btn button-essential' %>
